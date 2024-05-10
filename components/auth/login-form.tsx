@@ -42,6 +42,9 @@ export const LoginForm = () => {
             login(values)
               .then((data)=>{  
                setError(data?.error );
+               if(!data?.error) {
+                 setSuccess("Go verify your email")
+               }
               })
         });
     }
