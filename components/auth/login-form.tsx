@@ -103,8 +103,9 @@ export const LoginForm = () => {
                     <FormSuccess message={success}/>
                     <Button
                     disabled={isPending}
+                    
                     type="submit"
-                    className="w-full">Submit</Button>
+                    className="w-full bg-primary_dark hover:bg-primary_dark text-black">Login</Button>
                  </form>
                </Form>
           </CardWrapper>

@@ -14,7 +14,7 @@ export const BackButton = ({href , label}:BackButtonProps) => {
     <div>
       <Button 
       variant="link"
-      className="font-normal w-full"
+      className="font-normal text-white w-full"
       size="sm"
       asChild
       >

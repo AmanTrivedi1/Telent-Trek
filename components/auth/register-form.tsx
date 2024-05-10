@@ -56,7 +56,7 @@ export const RegisterForm = () => {
             showSocial >
                <Form {...form}>
                  <form
-                 className="space-y-6"
+                 className="space-y-6 "
                  onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="space-y-4">
                     <FormField 
@@ -120,7 +120,7 @@ export const RegisterForm = () => {
                     <Button
                     disabled={isPending}
                     type="submit"
-                    className="w-full">Create and account</Button>
+                    className="w-full bg-primary_dark hover:bg-primary_dark text-black">Create and account</Button>
                  </form>
                </Form>
           </CardWrapper>
