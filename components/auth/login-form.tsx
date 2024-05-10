@@ -23,6 +23,7 @@ import FormError from "../form.error";
 import FormSuccess from "../form-success";
 import { login } from "@/actions/login";
 
+
 export const LoginForm = () => {
     const [isPending , startTransition] = useTransition();
     const [error , setError] = useState<string | undefined>("");
@@ -39,9 +40,9 @@ export const LoginForm = () => {
         setSuccess("");
         startTransition(()=>{
             login(values)
-              .then((data)=>{
-               setError(data.error);
-               setSuccess(data.success);
+              .then((data)=>{  
+               setError(data?.error );
+               setSuccess(data?.success  );
               })
         });
     }
