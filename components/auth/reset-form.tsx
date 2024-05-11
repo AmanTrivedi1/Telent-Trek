@@ -1,7 +1,6 @@
 "use client"
 import *  as z from "zod";
-import { LoginSchema } from "@/schemas";
-import { useSearchParams } from "next/navigation";
+import { ResetSchema } from "@/schemas";
 import { useState, useTransition } from "react";
 
 import CardWrapper from "./card-wrapper"
@@ -21,29 +20,27 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import FormError from "../form.error";
 import FormSuccess from "../form-success";
-import { login } from "@/actions/login";
-import Link from "next/link";
+import { reset } from "@/actions/reset";
 
 
-export const LoginForm = () => {
-    const searchParams = useSearchParams();
-    const urlError = searchParams.get("error")==="OAuthAccountNotLinked" 
-    ? "Email already in use with different provider!" : " "
+export const ResetForm = () => {
+ 
     const [isPending , startTransition] = useTransition();
     const [error , setError] = useState<string | undefined>("");
     const [success , setSuccess] = useState<string | undefined>("");
-    const form = useForm<z.infer<typeof LoginSchema>>({
-        resolver:zodResolver(LoginSchema),
+    const form = useForm<z.infer<typeof ResetSchema>>({
+        resolver:zodResolver(ResetSchema),
         defaultValues:{
             email:"",
-            password:"",
         }
     })
-    const onSubmit =  (values: z.infer<typeof LoginSchema>) =>{
+    const onSubmit =  (values: z.infer<typeof ResetSchema>) =>{
         setError("");
         setSuccess("");
+
+        console.log(values);
         startTransition(()=>{
-            login(values)
+            reset(values)
               .then((data)=>{  
                setError(data?.error );
                setSuccess(data?.success)
@@ -52,10 +49,9 @@ export const LoginForm = () => {
     }
     return (
         <>
-          <CardWrapper headerLabel="Wellcome Back"
-            backButtonLabel="Don't have accout"
-            backButtonHref="/auth/register"
-            showSocial >
+          <CardWrapper headerLabel="Forgot your password"
+            backButtonLabel="Back to login"
+            backButtonHref="/auth/login">
                <Form {...form}>
                  <form
                  className="space-y-6"
@@ -80,43 +76,14 @@ export const LoginForm = () => {
                             </FormItem>
                          )}
                         />
-
-                        {/* Password field started from here */}
-
-                        <FormField 
-                         control={form.control}
-                         name="password"
-                         render={({field})=> (
-                            <FormItem>
-                             <FormLabel>Passowrd</FormLabel>
-                             <FormControl>
-                                <Input 
-                                 className="text-black"
-                                 disabled={isPending}
-                                 {...field}
-                                 placeholder="******"
-                                 type="password"
-                                />
-                             </FormControl>
-                             <Button size="sm" variant="link" 
-                             asChild
-                             className="text-white font-normal ">
-                                <Link href="/auth/reset">
-                                  Forgot password ?
-                                </Link>
-                             </Button>
-                             <FormMessage/>
-                            </FormItem>
-                         )}
-                        />
                     </div>
-                    <FormError message={error }/>
+                    <FormError message={error}/>
                     <FormSuccess message={success}/>
                     <Button
                     disabled={isPending}
                     
                     type="submit"
-                    className="w-full bg-primary_dark hover:bg-primary_dark text-black">Login</Button>
+                    className="w-full bg-primary_dark hover:bg-primary_dark text-black">Send reset email!</Button>
                  </form>
                </Form>
           </CardWrapper>

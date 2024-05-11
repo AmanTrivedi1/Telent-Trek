@@ -13,19 +13,28 @@ export const {
     signIn,
     signOut
 } = NextAuth({
-    callbacks: {
-       async signIn({user}){
 
+pages:{
+    signIn:"/auth/login",
+    error:"/auth/error"
+},
+events:{
+  async  linkAccount({ user }){
+    await db.user.update({
+        where:{id:user.id},
+        data:{emailVerified:new Date()}
+    })
+  }
+},
+    callbacks: {
+       async signIn({user , account}){
+        if(account?.provider !=  "credentials") return true;
         const existingUser = await getUserById(user.id);
 
-        if(!existingUser || !existingUser.emailVerified){
-            return false;
-        }
+        if(!existingUser?.emailVerified) return false;
 
         return true
        },
-    
-
         async session ({token , session}){
             console.log({
                 sessionToken:token,
