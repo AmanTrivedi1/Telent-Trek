@@ -18,7 +18,7 @@ export default  function Home() {
              <p className="text-white text-sm  font-semibold   p-2">Where you trade your art</p>
                 <div>
                    <LoginButton >
-                      <Button  size="lg" className="bg-primary_dark  hover:bg-primary_dark text-base">Sign in</Button>
+                      <Button   size="lg" className="bg-primary_dark  text-black hover:bg-primary_dark text-base">Explore the Nfts</Button>
                    </LoginButton>
                 </div>
            </div>
@@ -26,3 +26,4 @@ export default  function Home() {
    </>
   );
 }
+ 

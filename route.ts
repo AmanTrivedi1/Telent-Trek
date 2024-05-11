@@ -14,7 +14,7 @@ export const authRoutes = [
 
 export const apiAuthPrefix = "/api/auth";
 
-export const DEFAULT_LOGIN_REDIRECT="/protected/settings";
+// export const DEFAULT_LOGIN_REDIRECT="/protected/settings";
 
-// export const DEFAULT_LOGIN_REDIRECT="https://maze-nft.vercel.app/";
+export const DEFAULT_LOGIN_REDIRECT="https://maze-nft.vercel.app/";
 
