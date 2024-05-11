@@ -5,6 +5,7 @@ import { useState, useTransition } from "react";
 import { newPassword } from "@/actions/new-password";
 import CardWrapper from "./card-wrapper"
 import {useForm} from"react-hook-form";
+import { Suspense } from 'react'
 import { zodResolver } from "@hookform/resolvers/zod";
 import {useSearchParams} from "next/navigation"
 
@@ -53,6 +54,7 @@ export const NewPasswordForm = () => {
     }
     return (
         <>
+        <Suspense>
           <CardWrapper headerLabel="Enter your new password"
             backButtonLabel="Back to login"
             backButtonHref="/auth/login">
@@ -90,6 +92,7 @@ export const NewPasswordForm = () => {
                  </form>
                </Form>
           </CardWrapper>
+          </Suspense>
         </>
     )
 }

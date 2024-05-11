@@ -3,6 +3,7 @@
 import {BeatLoader} from "react-spinners"
 import { useSearchParams } from "next/navigation";
 import {FormError} from "@/components/form.error"
+import { Suspense } from 'react'
 import {FormSuccess} from "@/components/form-success"
 import  {
     Card,
@@ -41,6 +42,7 @@ const NewVerificationForm = () => {
     }, [onSubmit])
 
   return (
+    <Suspense>
     <Card className="sm:w-[400px]  bg-base border-primary_dark w-[350px] ">
     <CardHeader>
       <Header label="Oops! Something went wrong"/>      
@@ -59,6 +61,7 @@ const NewVerificationForm = () => {
     </div>
     <Link href="/auth/login" className="hover:underline text-white p-2 flex items-center justify-center w-full">back to login</Link>
 </Card>
+</Suspense>
   )
 }
  
